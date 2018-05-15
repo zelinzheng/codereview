@@ -25,7 +25,7 @@ SECRET_KEY = 'agep-f2=*i$bxksu(73ffm(xh@cwp-u9jbikole%!j_0=qarl5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dev-best10.herokuapp.com']
 
 
 # Application definition
