@@ -99,7 +99,7 @@
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
-      <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="100">&ensp;{{ item.title }}</a></p>
+      <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="140">&ensp;<span class="">{{ item.title|truncatechars:92  }}</span></a></p>
       <footer class="footer font-weight-light"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ item.rating }}|Count:{{item.rating_count}}</footer>
     </blockquote>
   </div>
