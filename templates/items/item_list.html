@@ -1,10 +1,64 @@
-<h1>Welcome to Best 10 </h1>
+{% extends 'base.html' %}
+
+
+{%block content%}
+
+<style>
+
+ .jumbotron{
+    background-color: #FCEFE7;
+
+    }
+</style>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-4"><b>Best10</b></h1>
+      <br>
+    <p class="lead">Looking for top 10 items? Type in a keyword below to get best results.</p>
+      <br>
+      <form method="POST"> {% csrf_token %}
+      <div class="input-group">
+     <input type="text" class="form-control" name="query_word" placeholder="Enter here...">
+     <span class="input-group-btn">
+    <button class="btn btn-default" type="submit">LOOK UP</button>
+  </span>
+    </div><!-- /input-group -->
+</form>
+  </div>
+</div>
+
+{% if not item_list %}
+<div class="container">
+
+</div>
+
+{% endif %}
+
+<!-- Search List -->
+<div class="container">
 {% for item in item_list %}
-
-<p> {{item.title }}
-    {{ item.rating }}
-    {{ item.rating_count }}
-    {{ item.hotscore }} %
-</p>
-
+<div class="card">
+  <div class="card-header">
+    <span class="{% if forloop.counter < 4%}badge badge-pill badge-warning{%endif%}" >Top {{ forloop.counter}}</span> <span class="float-right">Customer satisfaction {{ item.hotscore }}%</span>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="100">&ensp;{{ item.title }}</a></p>
+      <footer class="footer font-weight-light"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ item.rating }}|Count:{{item.rating_count}}</footer>
+    </blockquote>
+  </div>
+</div>
+<br>
 {% endfor %}
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

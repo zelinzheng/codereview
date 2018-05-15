@@ -24,7 +24,7 @@ class Item(object):
 
         for page in range(1, 3):
 
-            pre_url = 'https://www.amazon.com/s/search-alias%3Dstripbooks'
+            pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
