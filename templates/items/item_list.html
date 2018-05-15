@@ -4,13 +4,13 @@
 {%block content%}
 
 <style>
-
  .jumbotron{
     background-color: #FCEFE7;
-
     }
 </style>
 
+
+<!-- Junbotron Area-->
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <h1 class="display-4"><b>Best10</b></h1>
@@ -23,19 +23,71 @@
      <span class="input-group-btn">
     <button class="btn btn-default" type="submit">LOOK UP</button>
   </span>
-    </div><!-- /input-group -->
+      </div>
 </form>
   </div>
 </div>
-
+<!-- How it works Session-->
 {% if not item_list %}
 <div class="container">
 
+  <!-- First Row-->
+  <div class="row bg-light">
+    <div class="col-6 offset-1">
+      <div class="card border-0 bg-light">
+    <div class="card-body">
+      <br><br><br>
+    <span class="h3 font-weight-bold">Easier & faster shopping experience
+    </span><br><br>
+    <p class="lead text-justify">
+      We gather all items's information from the internet and return the best 10 results based on customer satisfaction, review, rating and popularity
+    </p>
+    </div>
 </div>
+    </div>
+    <div class="col-4">
+      <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/shopping_img.jpg" height="300" width="300" class="rounded-circle">
+    </div>
+  </div>
+  <hr>
+
+  <!-- Second Row-->
+   <div class="row">
+     <div class="col-4 offset-2">
+      <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/old_way.jpg" height="300" width="300" class="rounded-circle">
+    </div>
+    <div class="col-6">
+      <div class="card border-0">
+    <div class="card-body">
+    <span class="h3 font-weight-bold">We do the research for you</span><br><br>
+    <p class="lead text-justify">
+    We know how much time you spend on looking a best item. Now,we do all the tedious and time consuming work for you.
+    It's time to say goodbye with that old shopping way.
+    </p>
+    </div>
+</div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
 
 {% endif %}
 
-<!-- Search List -->
+
+
+<!-- Search List Session-->
 <div class="container">
 {% for item in item_list %}
 <div class="card">
@@ -51,14 +103,7 @@
 </div>
 <br>
 {% endfor %}
-
 </div>
-
-
-
-
-
-
 
 
 {% endblock %}
