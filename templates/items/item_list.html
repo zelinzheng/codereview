@@ -1,1 +1,10 @@
 <h1>Welcome to Best 10 </h1>
+{% for item in item_list %}
+
+<p> {{item.title }}
+    {{ item.rating }}
+    {{ item.rating_count }}
+    {{ item.hotscore }} %
+</p>
+
+{% endfor %}
