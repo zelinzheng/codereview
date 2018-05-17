@@ -35,7 +35,8 @@
 
   <!-- First Row-->
   <div class="row">
-    <div class="col-6 offset-1">
+    <div class="col-md-1 col-lg-1 col-lx-1"></div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-lx-6">
       <div class="card border-0">
     <div class="card-body">
       <br><br><br>
@@ -47,19 +48,21 @@
     </div>
 </div>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4">
       <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/shopping_img.jpg" height="300" width="300" class="rounded-circle">
     </div>
+      <div class="col-md-1 col-lg-1 col-lx-1"></div>
   </div>
   <br><br>
   <hr>
   <br><br>
   <!-- Second Row-->
    <div class="row">
-     <div class="col-4 offset-2">
+       <div class="col-md-1 col-lg-1 col-lx-1"></div>
+     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4">
       <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/old_way.jpg" height="300" width="300" class="rounded-circle">
     </div>
-    <div class="col-6">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-lx-6">
       <div class="card border-0">
     <div class="card-body">
     <span class="h3 font-weight-bold">We do the research for you</span><br><br>
@@ -70,7 +73,7 @@
     </div>
 </div>
     </div>
-
+    <div class="col-md-1 col-lg-1 col-lx-1"></div>
   </div>
 
 
@@ -94,23 +97,45 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-2"></div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-lx-8">
 
 {% for item in item_list %}
 <div class="card">
   <div class="card-header">
-    <span class="{% if forloop.counter < 4%}badge badge-pill badge-warning{%endif%}" >Top {{ forloop.counter}}</span> <span class="float-right">Customer satisfaction {{ item.hotscore }}%</span>
+      <a href="{{ item.link}}">{{ item.title }}</a>
   </div>
   <div class="card-body">
     <blockquote class="blockquote mb-0">
-      <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="140">&ensp;<span class="">{{ item.title|truncatechars:55 }}</span></a></p>
-      <footer class="footer font-weight-light"><img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ item.rating }}|Count:{{item.rating_count}}</footer>
+        <div class="row">
+            <div class="col-4">
+               <p> <span class="float-left{% if forloop.counter < 4%}badge badge-pill badge-warning{%endif%}" >#{{ forloop.counter}}</span></p>
+                <p><a href="{{ item.link }}" target="_blank"><img src="{{ item.image }}" height="140">&ensp;<span class="text-justify"></span></a></p>
+
+            </div>
+            <div class="col-8">
+                <p><span class="float-right badge badge-pill badge-warning">Customer satisfaction {{ item.hotscore }}%</span></p>
+                <br>
+                <br>
+
+
+            </div>
+        </div>
+
+
+
+
+      <footer class="footer font-weight-light">
+          <img src="https://s3-us-west-1.amazonaws.com/a1-language/media/image/rating.png" height="30" width="30">Rating:{{ item.rating }}|Count:{{item.rating_count}}
+        <span class="float-right">${{ item.price}}.00</span>
+      </footer>
     </blockquote>
   </div>
 </div>
 <br>
 {% endfor %}
 </div>
+        <div class="col-2"></div>
 </div>
     </div>
 

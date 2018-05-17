@@ -14,7 +14,7 @@ def item_list(request):
 
 
             context = {
-             "item_list": search_result
+             "item_list": search_result[:10]
             }
             return render(request,'items/item_list.html', context)
         else:
