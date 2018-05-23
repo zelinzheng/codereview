@@ -1,1 +1,17 @@
-<h1>Sign Up Page</h1>
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<br><br><br>
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">Sign Up</h1>
+        <br>
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {% bootstrap_form user_form %}
+
+    <p class="text-center"><button type="submit" class="btn btn-success btn-lg">Sign Up</button></p>
+</form>
+    </div>
+</div>
+
+{% endblock %}

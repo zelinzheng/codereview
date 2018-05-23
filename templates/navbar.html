@@ -1,10 +1,12 @@
   <style>
- .nav {
+ .navbar {
     background-color: #FCEFE7;
     }
 
 
 </style>
+
+  <nav class="navbar">
   <ul class="nav">
 
   <li class="nav-item">
@@ -18,5 +20,27 @@
       <li class="nav-item">
     <a class="nav-link" href="{% url 'landing_page:contact'%}"><span class="h6 font-weight-light text-secondary">Contact</span></a>
   </li>
-
   </ul>
+
+    <ul class="nav">
+      {% if user.is_authenticated %}
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           {{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'profiles:log-out' %}?next={{request.path}}">Logout</a>
+        </div>
+      </li>
+      {% else %}
+         <li class="nav-item">
+      <a class="nav-link" href="{% url 'profiles:sign-in'%}"><span class="h6 font-weight-light text-secondary">Login</span></a>
+        </li>
+        <li class="nav-item">
+      <a class="nav-link" href="{% url 'profiles:sign-up'%}"><span class="h6 font-weight-light text-secondary">Sign Up</span></a>
+        </li>
+      {% endif %}
+    </ul>
+
+
+  </nav>

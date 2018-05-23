@@ -1,11 +1,17 @@
 from django.conf.urls import url
-from django.contrib import admin
-from items import views
-from .views import about, contact
+from .views import sign_up
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    url('^about/$', about, name='about'),
-    url('^contact/$', contact, name='contact')
+    url(r'^sign-up/$', sign_up, name='sign-up'),
+    url(r'sign-in/$', auth_views.login,
+        {'template_name':'profiles/sign_in.html'},
+        name='sign-in'
+        ),
+    url(r'^log-out/$', auth_views.logout,
+        {'next_page': '/'},
+        name='log-out'),
+
 
 ]
