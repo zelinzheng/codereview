@@ -10,8 +10,12 @@ def item_list(request):
 
         if q_word:
             item = Item()
-            search_result = item.get_rectangle_items(q_word=q_word)
-
+            # FIRST SEARCH
+            search_result = item.get_items(q_word=q_word)
+            # Testing Mode // Backup  Search if first search len() == 0:
+            if len(search_result) == 0:
+                print("Where is backup")
+                search_result = item.get_square_items(q_word)
 
             context = {
              "item_list": search_result[:10]

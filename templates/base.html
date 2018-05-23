@@ -34,19 +34,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+
   </head>
   <body>
-  <style>
- .nav {
-    background-color: #FCEFE7;
-    }
-</style>
-  <ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link"><span class="h4 font-weight-light">Best10</span></a>
-  </li>
+   {% include 'navbar.html'  %}
 
-  </ul>
 
     {% block content %}
 
