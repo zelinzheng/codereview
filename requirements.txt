@@ -4,6 +4,7 @@ chardet==3.0.4
 dj-database-url==0.5.0
 Django==1.11
 django-bootstrap3==10.0.1
+fake-useragent==0.1.10
 gunicorn==19.8.1
 idna==2.6
 newrelic==3.2.1.93

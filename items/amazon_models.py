@@ -2,8 +2,12 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from .algorithms import *
+import random
+from .agent_list import user_agent_list
+from fake_useragent import UserAgent
+from fake_useragent import FakeUserAgentError
 # Create Amazon item model
-
+ua = UserAgent()
 
 class Item(object):
     def __init__(self):
@@ -20,8 +24,12 @@ class Item(object):
         item_list = []
 
         start_time = time.time()
+
         headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+            'User-Agent': random.choice(user_agent_list)
+            }
+
+
 
         for page in range(1, 3):
 
@@ -30,7 +38,7 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             r = requests.get(url, headers=headers, timeout=5)
-
+            print("status_code: " + str(r.status_code))
             # sleep(5)while True:
             if int(r.status_code) == 200:
                 print("looks great")
@@ -94,8 +102,11 @@ class Item(object):
         item_list = []
 
         start_time = time.time()
+
+
         headers = {
-            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+                'User-Agent': random.choice(user_agent_list)
+            }
 
         for page in range(1, 3):
 
@@ -104,6 +115,8 @@ class Item(object):
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
             r = requests.get(url, headers=headers, timeout=5)
+            print("status_code: " + str(r.status_code))
+
 
             if int(r.status_code) == 200:
                 print("looks great")
