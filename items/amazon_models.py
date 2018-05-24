@@ -26,7 +26,7 @@ class Item(object):
         start_time = time.time()
 
         headers = {
-            'User-Agent': random.choice(user_agent_list)
+            'User-Agent': ua.random
             }
 
 
