@@ -18,7 +18,8 @@ def item_list(request):
                 search_result = item.get_square_items(q_word)
 
             context = {
-             "item_list": search_result[:10]
+             "item_list": search_result,
+
             }
             return render(request,'items/item_list.html', context)
         else:
