@@ -8,6 +8,7 @@ from fake_useragent import UserAgent
 from fake_useragent import FakeUserAgentError
 from .proxy_scraper import get_proxies
 from itertools import cycle
+from django.core.mail import send_mail
 # Create Amazon item model
 ua = UserAgent()
 
@@ -25,8 +26,8 @@ class Item(object):
 
     def get_items(self,q_word=None):
 
-        proxies = get_proxies()
-        proxy_pool = cycle(proxies)
+
+
         item_list = []
 
         start_time = time.time()
@@ -36,6 +37,9 @@ class Item(object):
             }
 
         for page in range(1, 3):
+            proxies = get_proxies()
+            proxy_pool = cycle(proxies)
+
 
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
@@ -50,23 +54,28 @@ class Item(object):
 
             print("status_code: " + str(r.status_code))
             # sleep(5)while True:
+
             if int(r.status_code) == 200:
+
+                send_mail(
+                    'Testing now',
+                    'Here is the message.',
+                    'cj160901@gmail.com',
+                    ['cj160901@gmail.com'],
+                )
+
                 print("looks great")
 
                 soup = BeautifulSoup(r.content, "html.parser")
 
                 try:
-
                     ul = soup.find('div', {'id': "resultsCol"})
-
                     all_li = ul.find_all('li', class_='s-result-item')
-
                     for li in all_li:
                         all_a = li.find_all('a')
                         rating_div = li.find('div', class_='a-column a-span5 a-span-last')
                         if not rating_div:
                             rating_div = li.find('div', class_='a-row a-spacing-top-mini a-spacing-none')
-
                         try:
                             price = li.find_all('span', class_='sx-price-whole')[0].text
                             rating_count = int(rating_div.find_all('a')[1].text)
