@@ -6,8 +6,12 @@ import random
 from .agent_list import user_agent_list
 from fake_useragent import UserAgent
 from fake_useragent import FakeUserAgentError
+from .proxy_scraper import get_proxies
+from itertools import cycle
 # Create Amazon item model
 ua = UserAgent()
+
+
 
 class Item(object):
     def __init__(self):
@@ -21,6 +25,8 @@ class Item(object):
 
     def get_items(self,q_word=None):
 
+        proxies = get_proxies()
+        proxy_pool = cycle(proxies)
         item_list = []
 
         start_time = time.time()
@@ -29,15 +35,19 @@ class Item(object):
             'User-Agent': ua.random
             }
 
-
-
         for page in range(1, 3):
 
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            r = requests.get(url, headers=headers, timeout=5)
+            proxy = next(proxy_pool)
+            print(proxy)
+            r = requests.get(url,
+                             headers=headers,
+                             proxies={"http": proxy, "https": proxy},
+                             timeout=5)
+
             print("status_code: " + str(r.status_code))
             # sleep(5)while True:
             if int(r.status_code) == 200:
@@ -50,8 +60,6 @@ class Item(object):
                     ul = soup.find('div', {'id': "resultsCol"})
 
                     all_li = ul.find_all('li', class_='s-result-item')
-
-
 
                     for li in all_li:
                         all_a = li.find_all('a')
@@ -99,6 +107,11 @@ class Item(object):
     def get_square_items(self,q_word=None):
 
         print("sqaure items ")
+
+        proxies = get_proxies()
+        proxy_pool = cycle(proxies)
+
+
         item_list = []
 
         start_time = time.time()
@@ -114,7 +127,13 @@ class Item(object):
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
-            r = requests.get(url, headers=headers, timeout=5)
+            proxy = next(proxy_pool)
+            print(proxy)
+            r = requests.get(url,
+                             headers=headers,
+                             proxies={"http":proxy,"https": proxy},
+                             timeout=5)
+
             print("status_code: " + str(r.status_code))
 
 
@@ -131,6 +150,7 @@ class Item(object):
                 title = ''
                 link  = ""
                 image = ""
+
                 for li in all_li:
                     # Get Title and Link
                     all_tags = li.find_all('a', class_='a-link-normal')
@@ -145,9 +165,11 @@ class Item(object):
                         for img in all_imgs:
                             if 'src' in img.attrs:
                                 image = img['src']
+
                         for a in all_tags:
                             if 'title' in a.attrs and 'href' in a.attrs:
                                 title = a['title']
+                                # print(title)
                                 link = a['href']
 
 

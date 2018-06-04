@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from dev_best10.settings import *
 from .amazon_models import Item
+from .tests import testParse
 
 
 # Home Page
@@ -13,6 +14,8 @@ def item_list(request):
             # FIRST SEARCH
             search_result = item.get_items(q_word=q_word)
             # Testing Mode // Backup  Search if first search len() == 0:
+            # search_result = testParse(q_word=q_word)
+
             if len(search_result) == 0:
                 print("Where is backup")
                 search_result = item.get_square_items(q_word)
