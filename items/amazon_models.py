@@ -106,6 +106,7 @@ class Item(object):
 
     def get_square_items(self,q_word=None):
 
+
         print("sqaure items ")
 
         proxies = get_proxies()
