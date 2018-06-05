@@ -4,8 +4,6 @@ from bs4 import BeautifulSoup
 from .algorithms import *
 import random
 from .agent_list import user_agent_list
-from fake_useragent import UserAgent
-from fake_useragent import FakeUserAgentError
 from .proxy_scraper import get_proxies
 from itertools import cycle
 from django.core.mail import send_mail
@@ -30,7 +28,6 @@ class Item(object):
         item_list = []
 
         start_time = time.time()
-
 
         for page in range(1, 3):
             # proxies pool
