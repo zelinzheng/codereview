@@ -10,8 +10,9 @@ from .proxy_scraper import get_proxies
 from itertools import cycle
 from django.core.mail import send_mail
 # Create Amazon item model
-ua = UserAgent()
 
+proxies = get_proxies()
+proxy_pool = cycle(proxies)
 
 
 class Item(object):
@@ -25,20 +26,21 @@ class Item(object):
         self.price    = 1
 
     def get_items(self,q_word=None):
-
-
-
+        # Set item list
         item_list = []
-
         start_time = time.time()
 
-        headers = {
-            'User-Agent': ua.random
-            }
 
         for page in range(1, 3):
-            proxies = get_proxies()
-            proxy_pool = cycle(proxies)
+            # proxies pool
+
+
+            # set user agent
+            user_agent = random.choice(user_agent_list)
+            print(user_agent)
+            headers = {
+                'User-Agent': user_agent,
+            }
 
 
             pre_url = 'https://www.amazon.com/s?url=search-alias%3Daps'
@@ -115,21 +117,10 @@ class Item(object):
 
     def get_square_items(self,q_word=None):
 
-
-        print("sqaure items ")
-
-        proxies = get_proxies()
-        proxy_pool = cycle(proxies)
-
-
         item_list = []
-
         start_time = time.time()
 
 
-        headers = {
-                'User-Agent': random.choice(user_agent_list)
-            }
 
         for page in range(1, 3):
 
@@ -137,6 +128,14 @@ class Item(object):
             keyword_url = '&field-keywords=%s' % q_word
             url = pre_url + keyword_url + '&page={0}'.format(page)
 
+            # Set User agent
+            user_agent = random.choice(user_agent_list)
+            print(user_agent)
+            headers = {
+                'User-Agent': user_agent
+            }
+
+            #Set proxy
             proxy = next(proxy_pool)
             print(proxy)
             r = requests.get(url,
@@ -155,7 +154,6 @@ class Item(object):
                 # a_tags = soup.find_all('a', class_='a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal')
 
                 ul = soup.find('div', {'id': "resultsCol"})
-
                 all_li = ul.find_all('li', class_='s-result-item')
                 title = ''
                 link  = ""

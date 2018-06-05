@@ -129,9 +129,9 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'cj160901@gmail.com'
-EMAIL_HOST_PASSWORD = 'luo110015'
+ACCOUNT_EMAIL_VERIFICATION = "none"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "cj160901@gmail.com"
+EMAIL_HOST_PASSWORD = "$luo110015$"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-

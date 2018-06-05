@@ -136,8 +136,6 @@ LOGIN_REDIRECT_URL = '/'
 
 
 
-
-
 ACCOUNT_EMAIL_VERIFICATION = "none"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "cj160901@gmail.com"
