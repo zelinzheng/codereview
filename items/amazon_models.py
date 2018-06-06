@@ -56,15 +56,14 @@ class Item(object):
                 print("status_code: " + str(r.status_code))
                 # sleep(5)while True:
 
-                if int(r.status_code) == 200:
-
+                if int(r.status_code) != 200:
                     send_mail(
-                    'Testing now',
-                    'Here is the message.',
+                    'Parsing failed',
+                    'Here is the status code:' + r.status_codd,
                     'cj160901@gmail.com',
                     ['cj160901@gmail.com'],
-                )
-
+                    )
+                else:
                     print("looks great")
 
                     soup = BeautifulSoup(r.content, "html.parser")
@@ -102,8 +101,6 @@ class Item(object):
                         pass
 
                     print("--- %s seconds ---" % (time.time() - start_time))
-                else:
-                    pass
             except:
                 pass
         # sort item list by rating_count
